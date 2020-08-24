@@ -20,11 +20,11 @@ class DataBase {
 	{
 		/* data base config */
 		
-		$this->host = "127.0.0.1";
-		$this->db_name = "";
+		$this->host = '127.0.0.1';
+		$this->db_name = 'test';
 		$this->charset = 'utf8';
-		$this->db_user = "root";
-		$this->db_passwd = "";
+		$this->db_user = 'root';
+		$this->db_passwd = '';
 		
 		$this->connect_str = "mysql:host=$this->host;dbname=$this->db_name;charset=$this->charset";
 		

@@ -10,7 +10,6 @@ use App\Controllers\PrivateController;
 class RouteService {
 	
 	private $array_uri;
-	private $home_uri;
 	private $cur_uri;
 	private $routes;
 	private $message;
@@ -18,11 +17,16 @@ class RouteService {
 	
 	public function __construct()
 	{
+		
 		$this->message = '';
 		$this->input_value = '';
+		
 		$this->array_uri = explode('/', $_SERVER['REQUEST_URI']);
-		$this->home_uri = $this->array_uri[1];
-		$this->cur_uri = $this->array_uri[2];
+		
+		// var_dump($this->array_uri);
+		// exit;
+		
+		$this->cur_uri = $this->array_uri[1] === '' ? 'signin' : $this->array_uri[1];
 		
 		$this->routes = [ /* config routes */
 			'signin' => new SigninController,
@@ -35,7 +39,7 @@ class RouteService {
 	{
 		$this->getRouting();
 		
-		header('Location: /'.$this->home_uri.'/public/'.$this->cur_uri.'.php' . $this->message . $this->input_value);
+		header('Location: /public/'.$this->cur_uri.'.php' . $this->message . $this->input_value);
 		
 		exit;
 	}
